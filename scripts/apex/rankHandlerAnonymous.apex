@@ -1,0 +1,11 @@
+RankHandler rh= new RankHandler();
+string price1=rh.rankPriceSwitch(1);
+system.debug('this is price11 '+ price1);
+string price2=rh.rankPrice(2);
+system.debug('this is price2 '+ price2);
+string price3=rh.rankPrice(3);
+system.debug('this is price3 '+ price3);
+string price4=rh.rankPrice(5);
+system.debug('this is price4 '+ price4);
+string price5=rh.rankPrice(15);
+system.debug('this is price5 '+ price5);
