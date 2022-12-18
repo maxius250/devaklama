@@ -1,17 +1,21 @@
-trigger AccountTrigger on Account  (before insert, after insert, before update, after update) {
+//trigger AccountTrigger on Account  (before insert, after insert, before update, after update) {
    //List<account> accoldlist = trigger.old;
    //List<account> accnewlist =trigger.new ;
-   Map<id, account> accOldMap   = trigger.oldmap;
-   Map<id, account> accNewMap   = trigger.newmap;
-   Set<id> accIDs = accOldMap.keyset();
-   integer countchanged=0;
+   //system.debug('123');
 
-   for (ID eachid : accIDs) {
+
+   /*Map<id, account> accOldMap   = trigger.oldmap;
+   Map<id, account> accNewMap   = trigger.newmap;
+   Set<id> accIDs = accNewMap.keyset();
+   integer countchanged=0;
+   */
+   //System.debug('123');
+  /* for (ID eachid : accIDs) {
     account newacc=accNewMap.get(eachID);
     string newWeb=newAcc.website;
-    System.debug('this is new web===> '+ newWeb);
-
-    account oldacc=accOldMap.get(eachID);
+    system.debug('this is new web ====>'+newWeb);
+   }
+   /* account oldacc=accOldMap.get(eachID);
     string oldWeb=oldAcc.website;
     System.debug('this is old web===> '+ oldWeb);
 
