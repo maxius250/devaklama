@@ -82,7 +82,7 @@ public  class DMLdemo {
     }
     public static void DML_insertDemo5() {
         List<account> ListAccforloop = new List<account>();
-        for (Integer i = 0; i < 0; i++) {
+        for (Integer i = 5; i < 0; i++) {
             account acc=new account();
             acc.name='Version '+i;
             ListAccforloop.add(acc);
@@ -100,7 +100,7 @@ public  class DMLdemo {
         List<Account> updAcc = new List<Account>();
 
         for (Account acc: Listacc) {
-            if (acc.active__C=='Yes') {
+            if (acc.name.contains('test')) {
                 acc.name=acc.name+ ' via B.0';
                 updAcc.add(acc);     
             }
