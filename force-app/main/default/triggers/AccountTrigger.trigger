@@ -1,21 +1,30 @@
-//trigger AccountTrigger on Account  (before insert, after insert, before update, after update) {
-   //List<account> accoldlist = trigger.old;
+trigger AccountTrigger on Account  (before insert, after insert, before update, after update) {
+  
+
+    if (trigger.isbefore) {
+      AccounTriggerHandler.updateAccDescr(trigger.new, trigger.old, trigger.newmap,trigger.oldmap);
+    }
+  
+  
+  
+    /*//List<account> accoldlist = trigger.old;
    //List<account> accnewlist =trigger.new ;
-   //system.debug('123');
+  // system.debug('123');
 
-
-   /*Map<id, account> accOldMap   = trigger.oldmap;
+  Map<id, account> accOldMap   = trigger.oldmap;
    Map<id, account> accNewMap   = trigger.newmap;
    Set<id> accIDs = accNewMap.keyset();
    integer countchanged=0;
-   */
-   //System.debug('123');
-  /* for (ID eachid : accIDs) {
+
+if (trigger.isafter && trigger.isupdate) {
+    
+   
+  for (ID eachid : accIDs) {
     account newacc=accNewMap.get(eachID);
     string newWeb=newAcc.website;
     system.debug('this is new web ====>'+newWeb);
-   }
-   /* account oldacc=accOldMap.get(eachID);
+  
+ account oldacc=accOldMap.get(eachID);
     string oldWeb=oldAcc.website;
     System.debug('this is old web===> '+ oldWeb);
 
@@ -23,9 +32,9 @@
     if (newweb!=oldweb) {
         System.debug('account is '+newacc.name+ ' website changed to ==> '+newWeb);
         countchanged++;
-    }
+    }}
 System.debug('website updated number=== '+countchanged );
-    
+  /**  
    }
 
  
@@ -150,7 +159,7 @@ if (trigger.isafter && trigger.isinsert) {
     if (Trigger.isafter) {
         System.debug('account after update trigger called');
    */
-    }
+}
    
 
 
