@@ -11,4 +11,16 @@ public class ContactTriggerHandler {
         
     }
    }
+   public static void conactUpdateValidation2(list <Contact> contriggerold, 
+                                              list <Contact> contriggernew, 
+                                              map <id, Contact> contriggeroldmap, 
+                                              map <id, Contact> contriggernewmap) {
+    
+    for (Contact eachCont : contriggernew) {
+        if ( contriggeroldmap.get(eachcont.id).LeadSource!=contriggernewmap.get(eachcont.id).LeadSource) {
+            eachCont.LeadSource.addError('Lead Source can not be changed');
+        }
+        
+    }
+   }
 }

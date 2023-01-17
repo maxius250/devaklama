@@ -4,6 +4,10 @@ trigger AccountTrigger on Account  (before insert, after insert, before update, 
     if (trigger.isbefore) {
       AccounTriggerHandler.updateAccDescr(trigger.new, trigger.old, trigger.newmap,trigger.oldmap);
     }
+
+    if (trigger.isafter && trigger.isupdate) {
+        AccounTriggerHandler.updateVip(trigger.new, trigger.old, trigger.newmap,trigger.oldmap);
+    }
   
   
   

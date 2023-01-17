@@ -6,5 +6,10 @@ trigger ContactTrigger on Contact (before insert, after insert, before update, a
     if (Trigger.isbefore) {
         ContactTriggerHandler.conactUpdateValidation1(trigger.old, trigger.new, trigger.oldmap, trigger.newmap);
     }
+
+        if (Trigger.isbefore) {
+            ContactTriggerHandler.conactUpdateValidation2(trigger.old, trigger.new, trigger.oldmap, trigger.newmap);
+        }
+    }
 }
-}
+

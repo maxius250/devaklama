@@ -17,4 +17,35 @@ public  class AccounTriggerHandler {
         }
       }
    }
-}
+   public static void updateVip(List <Account> accTriggerNew, 
+                                List <Account> accTriggerold, 
+                                map <id, account> accTriggerNewMap, 
+                                map <id, account> accTriggeroldMap  ) {
+
+      Set<id> setAccID = new Set<id>();
+     
+        for (Account eachacc: accTriggerNew) {
+           
+                if ( eachacc.vip__c != accTriggeroldMap.get(eachacc.id).vip__c) {
+                setAccID.add(eachacc.id);
+                System.debug('this is set of acc'+ setAccID);
+             }
+            }
+
+
+        List<Contact> Listcontacts = [SELECT id, name,  account.id, vip__c  FROM Contact where account.id in :setAccID];
+
+        for (contact eaccont : Listcontacts) {
+
+            boolean accVip=accTriggerNewMap.get(eaccont.accountid).vip__c;
+            eaccont.vip__c=accVip;
+            System.debug('contact===> '+ eaccont+' acc VIP'+accVip+eaccont.vip__c);
+            
+        }
+
+        update Listcontacts;
+        }
+
+       
+
+    }
