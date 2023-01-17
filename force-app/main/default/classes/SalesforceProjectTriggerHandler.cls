@@ -32,4 +32,45 @@ public static void SPstatust(List <Salesforce_Project__c> sptriggerNew, list <Sa
         }
     }
 }
+@future
+public static void SPupdateDescription1(Set<id> setSPid) {
+  System.debug('inside future method');
+  List <Salesforce_Project__c> allSP= [SELECT id,description__c from Salesforce_Project__c where id in: setSPid];
+ 
+  for (salesforce_project__c eachSP : allsp) {
+    eachSP.description__c+= '.  Updated from the future';
+
+  }
+  update allSP;
+}
+
+
+public static void SPstatusComp(List <Salesforce_Project__c> sptriggerNew, list <Salesforce_Project__c> sptriggerOld, 
+map <ID, salesforce_project__c> spTriggernewmap, map <ID, salesforce_project__c> spTriggeroldmap) {
+  
+  Set<id> Spcomptleted = new Set<id>();
+
+  for (salesforce_project__C sp : spTriggernew) {
+    if (sp.Status__c=='Completed' && sp.status__C!=sptriggeroldmap.get(sp.id).Status__c) {
+      Spcomptleted.add(sp.id);
+    }
+  }
+  if (!Spcomptleted.isempty()) {
+    updateSTstatus(Spcomptleted);
+  }
+
+}
+
+@future
+public static void updateSTstatus(set<id> spid) {
+  List <Salesforce_Ticket__c> allList= [SELECT id, status__C, salesforce_project__C from Salesforce_Ticket__c where Salesforce_Project__c in:spid];
+
+  for (salesforce_ticket__C eachST : allList) {
+    eachST.Status__c='Completed';
+
+  }
+  update allList;
+
+
+}
 }
