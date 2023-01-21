@@ -18,7 +18,8 @@ public class ContactTriggerHandler {
     
     for (Contact eachCont : contriggernew) {
         if ( contriggeroldmap.get(eachcont.id).LeadSource!=contriggernewmap.get(eachcont.id).LeadSource) {
-            eachCont.LeadSource.addError('Lead Source can not be changed');
+            String customerror= system.label.ContactValidation2;
+            eachCont.LeadSource.addError(customerror);
         }
         
     }

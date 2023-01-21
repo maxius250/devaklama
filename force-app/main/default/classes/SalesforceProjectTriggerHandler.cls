@@ -1,17 +1,26 @@
 public  class SalesforceProjectTriggerHandler {
    public static void creatDefaultST(list <Salesforce_Project__c> sptriggerNew) {
+    try {
     List<Salesforce_Ticket__c> newSTlist = new List<Salesforce_Ticket__c>();
-
+        DefaultTicketInfo__c dti=DefaultTicketInfo__c.getorgdefaults();
         for (salesforce_project__c eachSP : sptriggerNew) {
         Salesforce_Ticket__c st= new Salesforce_Ticket__c();
-        st.Subject__c='Default Ticket';
+        st.Subject__c=dti.Subject__c;
         st.salesforce_project__c=eachSP.id;
+        st.Description__c=dti.description__c;
+        st.Priority__c='Medium';
         newSTlist.add(st);
      }
    
      if (!newSTlist.isempty()) {
     insert newSTlist;
    }
+    } catch (Exception ex) {
+      for (Salesforce_Project__c  sp : sptriggerNew) {
+        sp.addError('Error in creating account. PLease contact your administrator');
+      }
+    }
+    
 }
 
 public static void SPstatust(List <Salesforce_Project__c> sptriggerNew, list <Salesforce_Project__c> sptriggerOld, 
